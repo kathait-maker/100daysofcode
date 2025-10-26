@@ -1,0 +1,123 @@
+//Q77: Check if the elements on the diagonal of a matrix are distinct.
+
+/*
+Sample Test Cases:
+Input 1:
+3 3
+1 2 3
+4 5 6
+7 8 1
+Output 1:
+False
+
+Input 2:
+3 3
+1 2 3
+4 5 6
+7 8 9
+Output 2:
+True
+
+*/
+
+#include <stdio.h>
+
+int main() {
+    int rows, cols;
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    // The diagonal is only valid for a square matrix
+    if (rows != cols) {
+        printf("False\n");
+        return 0;
+    }
+
+    int matrix[rows][cols];
+    int diagonal[rows];
+    int index = 0, isDistinct = 1;
+
+    // Read matrix
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Extract diagonal elements
+    for (int i = 0; i < rows; i++) {
+        diagonal[index++] = matrix[i][i];
+    }
+
+    // Check if diagonal elements are distinct
+    for (int i = 0; i < rows; i++) {
+        for (int j = i + 1; j < rows; j++) {
+            if (diagonal[i] == diagonal[j]) {
+                isDistinct = 0;
+                break;
+            }
+        }
+        if (!isDistinct)
+            break;
+    }
+
+    // Output result
+    if (isDistinct)
+        printf("True\n");
+    else
+        printf("False\n");
+
+    return 0;
+}
+
+
+//Q78: Find the sum of main diagonal elements for a square matrix.
+
+/*
+Sample Test Cases:
+Input 1:
+3 3
+1 2 3
+4 5 6
+7 8 9
+Output 1:
+15
+
+*/
+
+#include <stdio.h>
+
+int main() {
+    int rows, cols, sum = 0;
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &rows, &cols);
+
+    // Ensure it is a square matrix
+    if (rows != cols) {
+        printf("Matrix is not square. Cannot find main diagonal sum.\n");
+        return 0;
+    }
+
+    int matrix[rows][cols];
+
+    // Reading the matrix
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    // Summing the main diagonal elements
+    for (int i = 0; i < rows; i++) {
+        sum += matrix[i][i];
+    }
+
+    // Printing the result
+    printf("%d\n", sum);
+
+    return 0;
+}
+
+
